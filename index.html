@@ -412,24 +412,16 @@
             <h2>Ask a Question</h2>
             <p>Have a question about Catholic theology, Scripture, Church history, liturgy, spirituality, or moral issues? Submit your question below, and Br. Michael will provide a thoughtful response rooted in Catholic teaching.</p>
             
-            <form id="questionForm">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="question">Your Question</label>
-                    <textarea id="question" name="question" placeholder="Please ask your theological or faith-related question..." required></textarea>
-                </div>
-                
-                <button type="submit">Submit Question</button>
-            </form>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+  <label for="name">Your Name:</label><br>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="question">Your Question:</label><br>
+  <textarea id="question" name="question" rows="4" required></textarea><br><br>
+
+  <button type="submit">Submit</button>
+</form>
+
         </section>
 
         <!-- Daily Quote -->
