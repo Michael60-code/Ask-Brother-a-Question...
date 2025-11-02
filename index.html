@@ -447,6 +447,29 @@
             <p>"Faith is to believe what you do not see; the reward of this faith is to see what you believe."</p>
             <p class="author">— St. Augustine</p>
         </section>
+        <!-- Daily Reflections Section -->
+<section id="reflections" class="page-content">
+    <h2>Daily Reflections</h2>
+    <p>Here are today's reflections to deepen your spiritual life and prayer:</p>
+    
+    <div id="reflectionList">
+        <!-- Reflections will be dynamically added here -->
+    </div>
+    
+    <!-- Admin Upload for Reflections -->
+    <div id="adminReflectionUpload" style="margin-top:30px;">
+        <h3>Admin: Add New Reflection</h3>
+        <p>Enter the secret password to unlock:</p>
+        <input type="password" id="reflectionPassword" placeholder="Enter password">
+        <button id="reflectionUnlockBtn">Unlock</button>
+
+        <div id="reflectionFormContainer" style="display:none; margin-top:20px;">
+            <label for="reflectionText">Reflection Text:</label><br>
+            <textarea id="reflectionText" placeholder="Write your reflection..." rows="4"></textarea><br><br>
+            <button id="addReflectionBtn">Add Reflection</button>
+        </div>
+    </div>
+</section>
 
        <!-- Answers/Blog Section -->
 <section id="answers" class="page-content">
@@ -617,6 +640,42 @@ function toggleAnswer(link) {
         link.textContent = 'Read Full Answer →';
     }
 }
+</script>
+    <script>
+// Secret password for reflection admin
+const REFLECTION_PASSWORD = "dailyRef123"; // change this to your secure password
+
+const reflectionPasswordInput = document.getElementById('reflectionPassword');
+const reflectionUnlockBtn = document.getElementById('reflectionUnlockBtn');
+const reflectionFormContainer = document.getElementById('reflectionFormContainer');
+const addReflectionBtn = document.getElementById('addReflectionBtn');
+const reflectionText = document.getElementById('reflectionText');
+const reflectionList = document.getElementById('reflectionList');
+
+// Unlock reflection admin form
+reflectionUnlockBtn.addEventListener('click', () => {
+    if(reflectionPasswordInput.value === REFLECTION_PASSWORD) {
+        reflectionFormContainer.style.display = 'block';
+        alert('Reflection admin unlocked!');
+    } else {
+        alert('Incorrect password.');
+    }
+});
+
+// Add new reflection
+addReflectionBtn.addEventListener('click', () => {
+    const text = reflectionText.value.trim();
+    if(text) {
+        const div = document.createElement('div');
+        div.className = 'reflection-card';
+        div.innerHTML = `<p>${text}</p>`;
+        reflectionList.prepend(div); // Add to top
+        reflectionText.value = '';
+        alert('Reflection added!');
+    } else {
+        alert('Please write a reflection first.');
+    }
+});
 </script>
 </body>
 </html>
