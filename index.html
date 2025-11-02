@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Brother a Question - Catholic Q&A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Georgia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a2e5c;
+            --gold: #d4af37;
+            --cream: #fdfcf7;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--cream);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--navy);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--gold);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--navy);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 46, 92, 0.85) 0%, rgba(10, 46, 92, 0.9) 100%), url('https://placehold.co/1200x400/0a2e5c/ffffff?text=Catholic+Faith') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 20px 0 60px;
+        }
+        
+        .page-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--navy);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--navy);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+        
+        /* Blog/Answers */
+        .answer-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .answer-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .answer-card p {
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .read-more:hover {
+            color: var(--gold);
+        }
+        
+        /* Resources */
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .resource-item {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 6px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .resource-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .resource-item h4 {
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+        
+        .resource-item a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .resource-item a:hover {
+            color: var(--gold);
+        }
+        
+        /* Daily Quote */
+        .daily-quote {
+            background: linear-gradient(to right, var(--navy), #1a4a8c);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .daily-quote p {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .daily-quote .author {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .page-content {
+                padding: 25px;
+            }
+            
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Ask <span>Brother</span></a>
+            <button class="mobile-menu-btn" id="menuToggle">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ask">Ask a Question</a></li>
+                    <li><a href="#answers">Answers</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Faithful Answers. Catholic Wisdom.</h1>
+            <p>Seeking clarity on matters of faith? Ask your theological questions and receive answers rooted in Scripture, Tradition, and the Magisterium.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about" class="page-content">
+            <h2>About Br. Michael Mwandira</h2>
+            <p>Br. Michael Mwandira is a Catholic theology student with a deep passion for explaining the Catholic faith clearly, faithfully, and pastorally. His journey in theological studies has equipped him with a profound understanding of Scripture, Church history, liturgy, and moral theology.</p>
+            <p>Through "Ask Brother a Question," Br. Michael aims to provide thoughtful, well-reasoned answers that help Catholics and seekers alike to grow in understanding and love for the faith. His responses blend sound theology, philosophical insight, and pastoral sensitivity to address the questions that matter most.</p>
+            <p>The mission of this project is to be a trustworthy resource for Catholic teaching, grounded in the living Tradition of the Church and faithful to the Magisterium.</p>
+        </section>
+
+        <!-- Ask a Question Section -->
+        <section id="ask" class="page-content">
+            <h2>Ask a Question</h2>
+            <p>Have a question about Catholic theology, Scripture, Church history, liturgy, spirituality, or moral issues? Submit your question below, and Br. Michael will provide a thoughtful response rooted in Catholic teaching.</p>
+            
+            <form id="questionForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="question">Your Question</label>
+                    <textarea id="question" name="question" placeholder="Please ask your theological or faith-related question..." required></textarea>
+                </div>
+                
+                <button type="submit">Submit Question</button>
+            </form>
+        </section>
+
+        <!-- Daily Quote -->
+        <section class="daily-quote">
+            <p>"Faith is to believe what you do not see; the reward of this faith is to see what you believe."</p>
+            <p class="author">— St. Augustine</p>
+        </section>
+
+        <!-- Answers/Blog Section -->
+        <section id="answers" class="page-content">
+            <h2>Recent Answers</h2>
+            
+            <div class="answer-card">
+                <h3>What is the Catholic understanding of Purgatory?</h3>
+                <p>Purgatory is a state of purification for souls who die in God's grace and friendship, but are still imperfectly purified. They undergo purification to achieve the holiness necessary to enter the joy of heaven (Catechism of the Catholic Church, 1030-1032).</p>
+                <p>This teaching is supported by Scripture (2 Maccabees 12:46, 1 Corinthians 3:15) and has been part of Christian tradition since the early Church...</p>
+                <a href="#" class="read-more">Read Full Answer →</a>
+            </div>
+            
+            <div class="answer-card">
+                <h3>Why do Catholics honor Mary?</h3>
+                <p>Catholics honor Mary because she is the Mother of God (Theotokos) and the greatest of all saints. Her "yes" to God at the Annunciation made our salvation possible. We honor her as our spiritual mother, following Christ's example (John 19:26-27)...</p>
+                <a href="#" class="read-more">Read Full Answer →</a>
+            </div>
+            
+            <div class="answer-card">
+                <h3>What is the difference between mortal and venial sin?</h3>
+                <p>Mortal sin destroys charity in the heart of man by a grave violation of God's law; it turns man away from God. Venial sin allows charity to subsist, even though it offends and wounds it (CCC 1855). Mortal sin requires full knowledge and deliberate consent...</p>
+                <a href="#" class="read-more">Read Full Answer →</a>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="page-content">
+            <h2>Catholic Resources</h2>
+            <p>Deepen your understanding of the Catholic faith with these trusted resources:</p>
+            
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h4>Catechism of the Catholic Church</h4>
+                    <a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM" target="_blank">Official Vatican Text</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Vatican Documents</h4>
+                    <a href="https://www.vatican.va/" target="_blank">Holy See Official Website</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Papal Encyclicals</h4>
+                    <a href="https://www.vatican.va/content/vatican/en.html" target="_blank">Modern Papal Teachings</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Catholic News Agency</h4>
+                    <a href="https://www.catholicnewsagency.com/" target="_blank">Faith-Based News</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>EWTN</h4>
+                    <a href="https://www.ewtn.com/" target="_blank">Catholic Media Network</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Catholic Answers</h4>
+                    <a href="https://www.catholic.com/" target="_blank">Apologetics & Evangelization</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-content">
+            <h2>Contact Br. Michael</h2>
+            <p>For questions, comments, or to connect with Br. Michael, feel free to reach out through the following channels:</p>
+            
+            <div class="contact-info">
+                <p><strong>Email:</strong> brother@catholicqa.org</p>
+                <p><strong>WhatsApp Forum:</strong> Join our Catholic discussion group (link provided upon request)</p>
+                
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">t</a>
+                    <a href="#" title="Instagram">i</a>
+                    <a href="#" title="YouTube">y</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ask Brother a Question</h3>
+                    <p>Faithful answers to your Catholic questions, rooted in Scripture, Tradition, and the Magisterium.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#ask">Ask a Question</a>
+                    <a href="#answers">Answers</a>
+                    <a href="#resources">Resources</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: brother@catholicqa.org</p>
+                    <p>Responses typically within 1-2 weeks</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ask Brother a Question. All rights reserved. | A Catholic Ministry</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('show');
+        });
+        
+        // Form Submission
+        document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your question! Br. Michael will respond to your inquiry as soon as possible.');
+            this.reset();
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.getElementById('navMenu').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
+
