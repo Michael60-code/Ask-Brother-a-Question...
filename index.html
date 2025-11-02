@@ -400,57 +400,49 @@
     <!-- Main Content -->
     <main class="container">
         <!-- About Section -->
-        <section id="about" class="page-content">
-            <h2>About Br. Michael Mwandira</h2>
-            <p>Br. Michael Mwandira is a Catholic theology student with a deep passion for explaining the Catholic faith clearly, faithfully, and pastorally. His journey in theological studies has equipped him with a profound understanding of Scripture, Church history, liturgy, and moral theology.</p>
-            <p>Through "Ask Brother a Question," Br. Michael aims to provide thoughtful, well-reasoned answers that help Catholics and seekers alike to grow in understanding and love for the faith. His responses blend sound theology, philosophical insight, and pastoral sensitivity to address the questions that matter most.</p>
-            <p>The mission of this project is to be a trustworthy resource for Catholic teaching, grounded in the living Tradition of the Church and faithful to the Magisterium.</p>
-        </section>
+       <section id="ask" class="page-content">
+    <h2>Ask a Question</h2>
+    <p>Have a question about Catholic theology, Scripture, Church history, liturgy, spirituality, or moral issues? Submit your question below, and Br. Michael will provide a thoughtful response rooted in Catholic teaching.</p>
+    
+    <form id="questionForm" action="https://formspree.io/f/mdkpbykj" method="POST">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-        <!-- Ask a Question Section -->
-        <section id="ask" class="page-content">
-            <h2>Ask a Question</h2>
-            <p>Have a question about Catholic theology, Scripture, Church history, liturgy, spirituality, or moral issues? Submit your question below, and Br. Michael will provide a thoughtful response rooted in Catholic teaching.</p>
-            
-            <form id="questionForm" action="https://formspree.io/f/mdkpbykj" method="POST">
-  <label for="name">Your Name:</label><br>
-  <input type="text" id="name" name="name" required><br><br>
+        <label for="question">Your Question:</label><br>
+        <textarea id="question" name="question" rows="4" required></textarea><br><br>
 
-  <label for="question">Your Question:</label><br>
-  <textarea id="question" name="question" rows="4" required></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
 
-  <button type="submit">Submit</button>
-</form>
-            <script>
-const form = document.getElementById('questionForm');
+    <script>
+        const form = document.getElementById('questionForm');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the page from reloading
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default page reload
 
-    const data = new FormData(form);
+            const data = new FormData(form);
 
-    fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Thank you for your question! Br. Michael will respond as soon as possible.');
-            form.reset(); // Clear the form
-        } else {
-            alert('Oops! There was a problem submitting your form.');
-        }
-    })
-    .catch(error => {
-        alert('Oops! There was a problem submitting your form.');
-    });
-});
-</script>
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' } // Required for Formspree
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you for your question! Br. Michael will respond as soon as possible.');
+                    form.reset(); // Clear the form
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            })
+            .catch(() => {
+                alert('Oops! There was a problem submitting your form.');
+            });
+        });
+    </script>
+</section>
 
-        </section>
-
-        <!-- Daily Quote -->
+               <!-- Daily Quote -->
         <section class="daily-quote">
             <p>"Faith is to believe what you do not see; the reward of this faith is to see what you believe."</p>
             <p class="author">— St. Augustine</p>
