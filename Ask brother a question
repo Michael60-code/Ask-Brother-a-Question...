@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Brother a Question</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1e90ff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9em;
+      background: #1e90ff;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ask Brother a Question</h1>
+    <p>Faith • Guidance • Understanding</p>
+  </header>
+
+  <main>
+    <h2>Welcome!</h2>
+    <p>This is the official “Ask Brother a Question” page. You can post questions, explore answers, and learn more about faith and Christian living.</p>
+
+    <p>More content coming soon...</p>
+  </main>
+
+  <footer>
+    &copy; 2025 Ask Brother a Question
+  </footer>
+
+</body>
+</html>
